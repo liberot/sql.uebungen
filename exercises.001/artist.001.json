@@ -1,0 +1,14 @@
+{
+	"artist": {
+		"identification": "Dick Hurts",
+		"description": "",
+		"assets": [
+			{ 
+				"title": "Visage of Dick",
+			 	"path": "https://cdn.theatlantic.com/assets/media/img/photo/2018/10/halloween-tk/h02_RTX6GX9S/main_1200.jpg?1540839254"			
+			}
+		],
+		"releases": [
+		]
+	}
+}
