@@ -1,4 +1,9 @@
 <?php
+/*
+	uses ddl.001.root.sql 
+	sqlexcdb
+
+ */
 
 require_once('conn.util.php');
 
@@ -16,6 +21,7 @@ $doc = <<<EOD
 		"releases": [
 			{
 				"title": "Zwei Ei K\u00e4ptn",
+				"description": "",
 				"assets": [
 					{ 
 						"title": "1st cover imago",
@@ -34,6 +40,12 @@ EOD;
 
 $coll = json_decode($doc);
 
+// mime type for mockup
+$mime_id = q(c(), "call sqlexcdb.init_mimetype('image/png', '')");
+
+// timezone for mockup reasons 
+$timezone_id = q(c(), "call sqlexcdb.init_timezone('America/Los Angeles', '')");
+
 // adds an artist into the db
 $artist_id = q(c(), "call sqlexcdb.init_artist(
 	'".$coll->artist->identification."', 
@@ -41,26 +53,62 @@ $artist_id = q(c(), "call sqlexcdb.init_artist(
 	)"
 );
 
-// mime type for mockup
-$mime_id = q(c(), "call sqlexcdb.init_mimetype('image/png', '')");
+// adds assets of the artist into the db
+foreach($coll->artist->assets as $asset){
+	$asset_id = q(c(), "call sqlexcdb.init_asset(
+		'".$asset->title."', 
+		'description', 
+		'".$asset->path."', 
+		'".$mime_id."'
+		)"
+	);
+	// links asset to artist
+	$link_id = q(c(), "call sqlexcdb.link_asset_to_artist(
+		'".$asset_id."', 
+		'".$artist_id."', 
+		'meta', 
+		'title', 
+		'description'
+		)"
+	);
+}
 
-// adds the asset of the artist into the db
-$asset_id = q(c(), "call sqlexcdb.init_asset(
-	'".$coll->artist->assets[0]->title."', 
-	'description', 
-	'".$coll->artist->assets[0]->path."', 
-	'".$mime_id."'
-	)"
-);
-
-// links asset to artist
-$link_id = q(c(), "call sqlexcdb.link_asset_to_artist(
-	'".$asset_id."', 
-	'".$artist_id."', 
-	'meta', 
-	'title', 
-	'description'
-	)"
-);
+// adds releases
+foreach ($coll->artist->releases as $release) {
+	// print_r($release);
+	// adds a release
+	// date for mockup reasons
+	$d = date("Y-m-d H:i:s");
+	$release_id = q(c(), "call sqlexcdb.init_release(
+		'".$release->title."', 
+		'".$release->description."',
+		'".$d."',
+		'".$timezone_id."'
+		)"
+	);
+	foreach($release->assets as $asset){
+		// inits asset
+		$asset_id = q(c(), "call sqlexcdb.init_asset(
+			'".$asset->title."', 
+			'description', 
+			'".$asset->path."', 
+			'".$mime_id."'
+			)"
+		);
+		// links asset to release 
+		$link_id = q(c(), "call sqlexcdb.link_asset_to_release(
+			'".$asset_id."', 
+			'".$release_id."', 
+			'meta', 
+			'title', 
+			'description'
+			)"
+		);				
+	}
+}
 
 exit();
+
+
+
+

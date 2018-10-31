@@ -1,4 +1,9 @@
 <?php
+/*
+	uses ddl.001.root.sql 
+	sqlexcdb
+
+ */
 
 require_once('conn.util.php');
 

@@ -1,4 +1,9 @@
 <?php
+/*
+	uses ddl.000.root.sql 
+	sqlexercise 
+
+ */
 
 $conn = new mysqli('localhost', 'liberot', 'password', 'sqlexercise');
 
