@@ -19,30 +19,31 @@ function c(){
 };
 
 function q($conn, $sql){
-	$ret = null;
-	if($res = $conn->query($sql)){
-		if(true == $res){
+	$res = null;
+	if($qres = $conn->query($sql)){
+		if(true == $qres){
 			printf("succeeded: %s\n", $sql);
-			if($res instanceof mysqli_result){ 
-				while($row = mysqli_fetch_assoc($res)){
+			if($qres instanceof mysqli_result){ 
+				while($row = mysqli_fetch_assoc($qres)){
 					foreach($row as $key=>$value){
+						print(sprintf("key: %s value: %s\n", $key, $value));
 						if('last_insert_id()' == $key){
-							$ret = $value;
+							$res = $value;
 						}
 					}
 				}
-				mysqli_free_result($res);
+				mysqli_free_result($qres);
 			}
 		}
-		else if(false == $res){
-			printf("failed: %s\n", $conn->error);
+		else if(false == $qres){
+			printf("q failed: %s\n", $conn->error);
 		}
 	}
 	else{
-		printf("failed: %s\n", $conn->error);
+		printf("q failed: %s\n", $conn->error);
 	}
 	$conn->close();
-	return $ret;
+	return $res;
 }
 
 $mime_id = q(c(), "call sqlexcdb.init_mimetype('image/jpg', '')");
@@ -113,5 +114,6 @@ select asset.id, asset.title, asset.description, asset.path
 */
 
 q(c(), "call sqlexcdb.select_artist('%Yummy Yummi Yummi i got love in my tummy and i feel like lovers do%')");
+q(c(), "call sqlexcdb.select_artist('%KBG%')");
 
 exit();
