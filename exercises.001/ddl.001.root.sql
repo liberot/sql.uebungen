@@ -16,6 +16,7 @@ create table if not exists sqlexcdb.mimetype (
 	id int not null auto_increment primary key,
 	title varchar(128),
 	description varchar(255)
+	# unique(title)
 );
 
 drop table if exists sqlexcdb.asset;
@@ -33,6 +34,7 @@ create table if not exists sqlexcdb.artist (
 	id int not null auto_increment primary key,
 	identification varchar(255),
 	description varchar(255)
+	# unique(identification)
 );
 
 drop table if exists sqlexcdb.asset_to_artist;
@@ -55,6 +57,7 @@ create table if not exists sqlexcdb.release (
 	rdate_date datetime,
 	rdate_timezone_id int,
 	foreign key (rdate_timezone_id) references sqlexcdb.timezone(id)
+	# unique(title)
 );
 
 drop table if exists sqlexcdb.release_to_artist;
@@ -235,3 +238,5 @@ grant execute on procedure sqlexcdb.init_timezone to 'liberot'@'localhost';
 
 # flushi
 flush privileges;
+
+

@@ -1,0 +1,50 @@
+{
+	"artist": {
+		"identification": "Laars Jucken",
+		"description": "",
+		"assets": [
+			{ 
+				"title": "gesicht",
+			 	"path": "https://cdn.theatlantic.com/assets/media/img/photo/2018/10/halloween-tk/h02_RTX6GX9S/main_1200.jpg?1540839254"			
+			},
+			{ 
+				"title": "gesicht",
+			 	"path": "https://cdn.theatlantic.com/assets/media/img/photo/2018/10/images-of-the-season-fall-is-in-the/f02_RTX6EJJJ/main_1200.jpg?1539887088"			
+			}
+		],
+		"releases": [
+			{
+				"title": "Zwei Ei K\u00e4ptn",
+				"description": "",
+				"assets": [
+					{ 
+						"title": "1st cover imago",
+						"path": "https://cdn.theatlantic.com/assets/media/img/photo/2018/10/halloween-tk/h04_1054357306/main_1200.jpg?1540837377"
+					},
+					{ 
+						"title": "2nd cover image",
+						"path": "https://cdn.theatlantic.com/assets/media/img/photo/2018/10/halloween-tk/h08_1052479722/main_1200.jpg?1540839254"
+					}
+				]			
+			},
+			{
+				"title": "Zum blauen Schwimmer",
+				"description": "",
+				"assets": [
+					{ 
+						"title": "Habe die Ehre, hebe die Haare",
+						"path": "https://cdn.theatlantic.com/assets/media/img/photo/2018/10/halloween-tk/h20_1054577334/main_1200.jpg?1540837378"
+					},
+					{ 
+						"title": "Sambalagula",
+						"path": "https://cdn.theatlantic.com/assets/media/img/photo/2018/10/a-photo-appreciation-of-libraries/l06_RTS21D7W/main_1200.jpg?1540411310"
+					},
+					{ 
+						"title": "Rhunghala Khatabhula Davila",
+						"path": "https://cdn.theatlantic.com/assets/media/img/photo/2018/10/a-photo-appreciation-of-libraries/l16_641582188/main_1200.jpg?1540411310"
+					}
+				]			
+			}
+		]
+	}
+}
