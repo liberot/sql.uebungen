@@ -32,6 +32,16 @@ $doc = <<<EOD
 						"path": "https://cdn.theatlantic.com/assets/media/img/photo/2018/10/halloween-tk/h08_1052479722/main_1200.jpg?1540839254"
 					}
 				]			
+			},
+			{
+				"title": "Zum blauen Schwimmer",
+				"description": "",
+				"assets": [
+					{ 
+						"title": "Habe die Ehre, hebe die Haare.",
+						"path": "https://cdn.theatlantic.com/assets/media/img/photo/2018/10/halloween-tk/h20_1054577334/main_1200.jpg?1540837378"
+					}
+				]			
 			}
 		]
 	}
@@ -88,8 +98,8 @@ foreach ($coll->artist->releases as $release) {
 	);
 	// links release
 	$link_id = q(c(), "call sqlexcdb.link_release_to_artist(
-		'".$artist_id."', 
-		'".$release_id."'
+		'".$release_id."', 
+		'".$artist_id."'
 		)"
 	);
 	// inits assets
