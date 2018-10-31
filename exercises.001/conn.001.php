@@ -48,6 +48,12 @@ while($i--){
 		'".$timezone_id."'
 		)"
 	);
+	// links release
+	$link_id = q(c(), "call sqlexcdb.link_release_to_artist(
+		'".$release_id."', 
+		'".$artist_id."'
+		)"
+	);
 	$ii = rand(0, 25);
 	while($ii--){
 		$asset_id = q(c(), "call sqlexcdb.init_asset(
