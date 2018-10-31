@@ -49,6 +49,8 @@ $mime_id = q(c(), "call sqlexcdb.init_mimetype('image/jpg', '')");
 $mime_id = q(c(), "call sqlexcdb.init_mimetype('image/gif', '')");
 $mime_id = q(c(), "call sqlexcdb.init_mimetype('image/png', '')");
 
+$timezone_id = q(c(), "call sqlexcdb.init_timezone('America/Los Angeles', '')");
+
 $i = 103;
 while($i--){
 	$artist_id = q(c(), "call sqlexcdb.init_artist(
@@ -75,12 +77,11 @@ while($i--){
 		);
 	};
 	$d = date("Y-m-d H:i:s");
-	$t = 'America/Los Angeles';
 	$release_id = q(c(), "call sqlexcdb.init_release(
 		'".rstr()."', 
 		'".rstr()."',
 		'".$d."',
-		'".$t."'
+		'".$timezone_id."'
 		)"
 	);
 	$ii = rand(0, 25);
@@ -111,6 +112,6 @@ select asset.id, asset.title, asset.description, asset.path
 			and asset_to_artist.artist_id = 3952;
 */
 
-q(c(), "call sqlexcdb.select_artist('%Yummy Yummi Yummi i got love in my tummy%')");
+q(c(), "call sqlexcdb.select_artist('%Yummy Yummi Yummi i got love in my tummy and i feel like lovers do%')");
 
 exit();

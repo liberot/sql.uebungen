@@ -3,6 +3,14 @@ drop database if exists sqlexcdb;
 create database if not exists sqlexcdb;
 
 # the tables
+drop table if exists sqlexcdb.timezone;
+create table if not exists sqlexcdb.timezone (
+	id int not null auto_increment primary key,
+	title varchar(128),
+	description varchar(255),
+	unique(title)
+);
+
 drop table if exists sqlexcdb.mimetype;
 create table if not exists sqlexcdb.mimetype (
 	id int not null auto_increment primary key,
@@ -45,7 +53,8 @@ create table if not exists sqlexcdb.release (
 	title varchar(255),
 	description varchar(255),
 	rdate_date datetime,
-	rdate_timezone varchar(255)
+	rdate_timezone_id int,
+	foreign key (rdate_timezone_id) references sqlexcdb.timezone(id)
 );
 
 drop table if exists sqlexcdb.asset_to_release;
@@ -93,11 +102,11 @@ create procedure sqlexcdb.init_release (
 		i_title varchar(255),
 		i_description varchar(255),
 		i_rdate_date datetime,
-		i_rdate_timezone varchar(255)
+		i_rdate_timezone_id int
 	)
 	begin
-		insert into sqlexcdb.release (title, description, rdate_date, rdate_timezone)
-			values(i_title, i_description, i_rdate_date, i_rdate_timezone)
+		insert into sqlexcdb.release (title, description, rdate_date, rdate_timezone_id)
+			values(i_title, i_description, i_rdate_date, i_rdate_timezone_id)
 		;
 		select last_insert_id();		
 	end
@@ -172,6 +181,21 @@ create procedure sqlexcdb.init_mimetype (
 :::
 delimiter ;
 
+drop procedure if exists sqlexcdb.init_timezone;
+delimiter :::
+create procedure sqlexcdb.init_timezone (
+		i_title varchar(128),
+		i_description varchar(255)
+	)
+	begin
+		insert into sqlexcdb.timezone (title, description)
+			values(i_title, i_description)
+		;
+		select last_insert_id();		
+	end
+:::
+delimiter ;
+
 # clients
 drop user if exists 'liberot'@'localhost';
 create user if not exists 'liberot'@'localhost' identified by 'password';
@@ -182,6 +206,7 @@ grant execute on procedure sqlexcdb.init_asset to 'liberot'@'localhost';
 grant execute on procedure sqlexcdb.link_asset_to_artist to 'liberot'@'localhost';
 grant execute on procedure sqlexcdb.link_asset_to_release to 'liberot'@'localhost';
 grant execute on procedure sqlexcdb.init_mimetype to 'liberot'@'localhost';
+grant execute on procedure sqlexcdb.init_timezone to 'liberot'@'localhost';
 
 # flushi
 flush privileges;
