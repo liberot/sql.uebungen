@@ -82,7 +82,7 @@ function proc($files){
 				// inits asset
 				$asset_id = q(c(), "call sqlexcdb.init_asset(
 					'".$asset->title."', 
-					'description', 
+					'".$asset->description."', 
 					'".$asset->path."', 
 					'".$mime_id."'
 					)"
