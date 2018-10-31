@@ -76,9 +76,9 @@ foreach($coll->artist->assets as $asset){
 // adds releases
 foreach ($coll->artist->releases as $release) {
 	// print_r($release);
-	// adds a release
 	// date for mockup reasons
 	$d = date("Y-m-d H:i:s");
+	// inits a release
 	$release_id = q(c(), "call sqlexcdb.init_release(
 		'".$release->title."', 
 		'".$release->description."',
@@ -86,6 +86,13 @@ foreach ($coll->artist->releases as $release) {
 		'".$timezone_id."'
 		)"
 	);
+	// links release
+	$link_id = q(c(), "call sqlexcdb.link_release_to_artist(
+		'".$artist_id."', 
+		'".$release_id."'
+		)"
+	);
+	// inits assets
 	foreach($release->assets as $asset){
 		// inits asset
 		$asset_id = q(c(), "call sqlexcdb.init_asset(

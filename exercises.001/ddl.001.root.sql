@@ -57,6 +57,15 @@ create table if not exists sqlexcdb.release (
 	foreign key (rdate_timezone_id) references sqlexcdb.timezone(id)
 );
 
+drop table if exists sqlexcdb.release_to_artist;
+create table if not exists sqlexcdb.release_to_artist (
+	release_id int,
+	artist_id int,
+	foreign key (release_id) references sqlexcdb.release(id),
+	foreign key (artist_id) references sqlexcdb.artist(id),
+	unique(release_id, artist_id)
+);
+
 drop table if exists sqlexcdb.asset_to_release;
 create table if not exists sqlexcdb.asset_to_release (
 	asset_id int,
@@ -109,6 +118,21 @@ create procedure sqlexcdb.init_release (
 			values(i_title, i_description, i_rdate_date, i_rdate_timezone_id)
 		;
 		select last_insert_id();		
+	end
+:::
+delimiter ;
+
+drop procedure if exists sqlexcdb.link_release_to_artist;
+delimiter :::
+create procedure sqlexcdb.link_release_to_artist (
+		i_release_id int,
+		i_artist_id int
+	)
+	begin
+		insert into sqlexcdb.release_to_artist (release_id, artist_id)
+			values(i_release_id, i_artist_id)
+		;
+		select last_insert_id();
 	end
 :::
 delimiter ;
@@ -202,6 +226,7 @@ create user if not exists 'liberot'@'localhost' identified by 'password';
 grant execute on procedure sqlexcdb.select_artist to 'liberot'@'localhost';
 grant execute on procedure sqlexcdb.init_artist to 'liberot'@'localhost';
 grant execute on procedure sqlexcdb.init_release to 'liberot'@'localhost';
+grant execute on procedure sqlexcdb.link_release_to_artist to 'liberot'@'localhost';
 grant execute on procedure sqlexcdb.init_asset to 'liberot'@'localhost';
 grant execute on procedure sqlexcdb.link_asset_to_artist to 'liberot'@'localhost';
 grant execute on procedure sqlexcdb.link_asset_to_release to 'liberot'@'localhost';
