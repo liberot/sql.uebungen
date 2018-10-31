@@ -49,8 +49,8 @@ create table if not exists sqlexcdb.asset_to_artist (
 	unique(asset_id, artist_id)			
 );
 
-drop table if exists sqlexcdb.release;
-create table if not exists sqlexcdb.release (
+drop table if exists sqlexcdb.arelease;
+create table if not exists sqlexcdb.arelease (
 	id int not null auto_increment primary key,
 	title varchar(255),
 	description varchar(255),
@@ -64,7 +64,7 @@ drop table if exists sqlexcdb.release_to_artist;
 create table if not exists sqlexcdb.release_to_artist (
 	release_id int,
 	artist_id int,
-	foreign key (release_id) references sqlexcdb.release(id),
+	foreign key (release_id) references sqlexcdb.arelease(id),
 	foreign key (artist_id) references sqlexcdb.artist(id),
 	unique(release_id, artist_id)
 );
@@ -77,7 +77,7 @@ create table if not exists sqlexcdb.asset_to_release (
 	title varchar(255),
 	description varchar(255),
 	foreign key (asset_id) references sqlexcdb.asset(id),
-	foreign key (release_id) references sqlexcdb.release(id),
+	foreign key (release_id) references sqlexcdb.arelease(id),
 	unique(asset_id, release_id)
 );
 
@@ -117,7 +117,7 @@ create procedure sqlexcdb.init_release (
 		i_rdate_timezone_id int
 	)
 	begin
-		insert into sqlexcdb.release (title, description, rdate_date, rdate_timezone_id)
+		insert into sqlexcdb.arelease (title, description, rdate_date, rdate_timezone_id)
 			values(i_title, i_description, i_rdate_date, i_rdate_timezone_id)
 		;
 		select last_insert_id();		
