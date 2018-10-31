@@ -38,8 +38,16 @@ $doc = <<<EOD
 				"description": "",
 				"assets": [
 					{ 
-						"title": "Habe die Ehre, hebe die Haare.",
+						"title": "Habe die Ehre, hebe die Haare",
 						"path": "https://cdn.theatlantic.com/assets/media/img/photo/2018/10/halloween-tk/h20_1054577334/main_1200.jpg?1540837378"
+					},
+					{ 
+						"title": "Sambalagula",
+						"path": "https://cdn.theatlantic.com/assets/media/img/photo/2018/10/a-photo-appreciation-of-libraries/l06_RTS21D7W/main_1200.jpg?1540411310"
+					},
+					{ 
+						"title": "Rhunghala Khatabhula Davila",
+						"path": "https://cdn.theatlantic.com/assets/media/img/photo/2018/10/a-photo-appreciation-of-libraries/l16_641582188/main_1200.jpg?1540411310"
 					}
 				]			
 			}
@@ -125,6 +133,17 @@ foreach ($coll->artist->releases as $release) {
 }
 
 exit();
+
+/*
+
+select asset.title, asset.path 
+	from asset, asset_to_release 
+		where asset.id = asset_to_release.asset_id
+			and asset_to_release.release_id = 1;
+
+*/
+
+
 
 
 
