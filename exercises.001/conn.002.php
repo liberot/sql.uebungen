@@ -90,12 +90,13 @@ foreach ($coll->artist->releases as $release) {
 exit();
 
 /*
+
 select asset.title, asset.path 
 	from asset, asset_to_release
 		where asset.id = asset_to_release.asset_id
 			and asset_to_release.release_id = 1;
 
-select asset.title, asset.path 
+select asset.title, asset.path, release_to_artist.release_id, 
 	from artist, release_to_artist, asset_to_release, asset
 		where artist.id = release_to_artist.artist_id
 			and release_to_artist.release_id = asset_to_release.release_id
