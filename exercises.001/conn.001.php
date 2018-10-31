@@ -114,6 +114,6 @@ select asset.id, asset.title, asset.description, asset.path
 */
 
 q(c(), "call sqlexcdb.select_artist('%Yummy Yummi Yummi i got love in my tummy and i feel like lovers do%')");
-q(c(), "call sqlexcdb.select_artist('%KBG%')");
+q(c(), "call sqlexcdb.select_artist('%KB%')");
 
 exit();
