@@ -7,8 +7,8 @@ drop table if exists sqlexcdb.timezone;
 create table if not exists sqlexcdb.timezone (
 	id int not null auto_increment primary key,
 	title varchar(128),
-	description varchar(255),
-	unique(title)
+	description varchar(255)
+	# unique(title)
 );
 
 drop table if exists sqlexcdb.mimetype;
