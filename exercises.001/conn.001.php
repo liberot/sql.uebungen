@@ -3,6 +3,8 @@
 	uses ddl.001.root.sql 
 	sqlexcdb
 
+	fills mockup db with random characters
+
  */
 
 require_once('conn.util.php');

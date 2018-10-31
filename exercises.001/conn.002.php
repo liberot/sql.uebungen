@@ -8,18 +8,17 @@
 
 require_once('conn.util.php');
 
+// mime type for mockup
+$mime_id = q(c(), "call sqlexcdb.init_mimetype('image/png', '')");
+
+// timezone for mockup reasons 
+$timezone_id = q(c(), "call sqlexcdb.init_timezone('America/Los Angeles', '')");
+
 function proc($files){
-
-	// mime type for mockup
-	$mime_id = q(c(), "call sqlexcdb.init_mimetype('image/png', '')");
-
-	// timezone for mockup reasons 
-	$timezone_id = q(c(), "call sqlexcdb.init_timezone('America/Los Angeles', '')");
 
 	foreach ($files as $file) {
 	
 		// loads a json
-		// s$doc = file_get_contents('artist.000.json');
 		if(false == ($doc = @file_get_contents($file))){
 			print "not a file: ".$file."\n";
 			continue;
