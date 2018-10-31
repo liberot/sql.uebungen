@@ -1,6 +1,6 @@
 # database
 drop database if exists sqlexcdb;
-create database if not exists sqlexcdb;
+create database if not exists sqlexcdb character set utf8 collate utf8_general_ci;	
 
 # the tables
 drop table if exists sqlexcdb.timezone;
