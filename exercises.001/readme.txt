@@ -10,3 +10,4 @@ mysql  Ver 15.1 Distrib 10.1.26-MariaDB, for debian-linux-gnu (x86_64) using rea
 :::
 mysql < ./ddl.001.root.sql
 php ./conn.001.php 
+php ./conn.002.php

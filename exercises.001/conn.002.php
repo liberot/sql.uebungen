@@ -1,5 +1,7 @@
 <?php
 
+require_once('conn.util.php');
+
 $doc = <<<EOD
 {
 	"artist": {
@@ -16,8 +18,12 @@ $doc = <<<EOD
 				"title": "Zwei Ei K\u00e4ptn",
 				"assets": [
 					{ 
-						"title": "cover",
+						"title": "1st cover imago",
 						"path": "https://cdn.theatlantic.com/assets/media/img/photo/2018/10/halloween-tk/h04_1054357306/main_1200.jpg?1540837377"
+					},
+					{ 
+						"title": "2nd cover image",
+						"path": "https://cdn.theatlantic.com/assets/media/img/photo/2018/10/halloween-tk/h08_1052479722/main_1200.jpg?1540839254"
 					}
 				]			
 			}
@@ -27,43 +33,6 @@ $doc = <<<EOD
 EOD;
 
 $coll = json_decode($doc);
-
-function c(){
-	$conn = new mysqli('localhost', 'liberot', 'password', 'sqlexcdb');
-	if($conn->connect_errno){
-		printf("connect failed: %s\n", $conn->connect_errno);
-		exit();
-	};
-	return $conn;
-};
-
-function q($conn, $sql){
-	$res = null;
-	if($qres = $conn->query($sql)){
-		if(true == $qres){
-			printf("succeeded: %s\n", $sql);
-			if($qres instanceof mysqli_result){ 
-				while($row = mysqli_fetch_assoc($qres)){
-					foreach($row as $key=>$value){
-						print(sprintf("key: %s value: %s\n", $key, $value));
-						if('last_insert_id()' == $key){
-							$res = $value;
-						}
-					}
-				}
-				mysqli_free_result($qres);
-			}
-		}
-		else if(false == $qres){
-			printf("q failed: %s\n", $conn->error);
-		}
-	}
-	else{
-		printf("q failed: %s\n", $conn->error);
-	}
-	$conn->close();
-	return $res;
-}
 
 // adds an artist into the db
 $artist_id = q(c(), "call sqlexcdb.init_artist(
