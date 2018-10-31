@@ -10,6 +10,12 @@ require_once('conn.util.php');
 
 function proc($files){
 
+	// mime type for mockup
+	$mime_id = q(c(), "call sqlexcdb.init_mimetype('image/png', '')");
+
+	// timezone for mockup reasons 
+	$timezone_id = q(c(), "call sqlexcdb.init_timezone('America/Los Angeles', '')");
+
 	foreach ($files as $file) {
 	
 		// loads a json
@@ -24,12 +30,6 @@ function proc($files){
 			print "not a json: ".$file."\n";
 			continue;
 		}
-
-		// mime type for mockup
-		$mime_id = q(c(), "call sqlexcdb.init_mimetype('image/png', '')");
-
-		// timezone for mockup reasons 
-		$timezone_id = q(c(), "call sqlexcdb.init_timezone('America/Los Angeles', '')");
 
 		// adds an artist into the db
 		$artist_id = q(c(), "call sqlexcdb.init_artist(
