@@ -23,13 +23,11 @@ print_r($sql);
 print_r(q($sql));
 
 $sql = "call sqlexcdb.select_artist('%Yummy Yummi Yummi i got love in my tummy and i feel like lovers do%')";
-$res = q($sql);
 print_r($sql);
-print_r($res);
+print_r(q($sql));
 
 $sql = "call sqlexcdb.select_artist('%KB%')";
-$res = q($sql);
 print_r($sql);
-print_r($res);
+print_r(q($sql));
 
 exit();
