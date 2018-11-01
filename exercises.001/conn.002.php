@@ -119,18 +119,11 @@ $sql = "call sqlexcdb.select_assets_by_artist_id(2)";
 print_r($sql);
 print_r(q(c(), $sql));
 
+$sql = "call sqlexcdb.select_assets_by_artist_id_2nd(1)";
+print_r($sql);
+print_r(q(c(), $sql));
 
 exit();
-
-/*	
-select asset.title, asset.path, release_to_artist.release_id, arelease.title 
-	from artist, release_to_artist, asset_to_release, asset, arelease 
-		where artist.id = release_to_artist.artist_id 
-			and release_to_artist.release_id = asset_to_release.release_id 
-			and release_to_artist.release_id = arelease.id 
-			and asset.id = asset_to_release.asset_id 
-			and artist.id = 1;
-*/
 
 
 

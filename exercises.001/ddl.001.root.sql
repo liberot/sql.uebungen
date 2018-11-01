@@ -279,6 +279,23 @@ create procedure sqlexcdb.select_assets_by_artist_id (
 :::
 delimiter ;
 
+drop procedure if exists sqlexcdb.select_assets_by_artist_id_2nd;
+delimiter :::
+create procedure sqlexcdb.select_assets_by_artist_id_2nd (
+		i_artist_id int
+	)
+	begin
+		select asset.*, arelease.title as release_title  
+			from artist, release_to_artist, asset_to_release, asset, arelease 
+				where artist.id = release_to_artist.artist_id 
+					and release_to_artist.release_id = asset_to_release.release_id 
+					and release_to_artist.release_id = arelease.id 
+					and asset.id = asset_to_release.asset_id 
+					and artist.id = i_artist_id;
+	end
+:::
+delimiter ;
+
 # clients
 drop user if exists 'liberot'@'localhost';
 create user if not exists 'liberot'@'localhost' identified by 'password';
@@ -295,6 +312,7 @@ grant execute on procedure sqlexcdb.select_timezone_id to 'liberot'@'localhost';
 grant execute on procedure sqlexcdb.select_mimetype_id to 'liberot'@'localhost';
 grant execute on procedure sqlexcdb.select_assets_by_release_id to 'liberot'@'localhost';
 grant execute on procedure sqlexcdb.select_assets_by_artist_id to 'liberot'@'localhost';
+grant execute on procedure sqlexcdb.select_assets_by_artist_id_2nd to 'liberot'@'localhost';
 
 # flushi
 flush privileges;
