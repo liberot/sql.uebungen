@@ -9,6 +9,11 @@
 
 require_once('conn.util.php');
 
+// mockup
+$timezone_id = q(c(), "call sqlexcdb.select_timezone_id(\"Pacific Standard Time\")");	
+$mimetype_id = q(c(), "call sqlexcdb.select_mimetype_id(\"image/png\")");	
+
+
 $i = 103;
 while($i--){
 	$artist_id = q(c(), "call sqlexcdb.init_artist(
@@ -22,7 +27,7 @@ while($i--){
 			'".rstr()."', 
 			'".rstr()."', 
 			'".rstr()."', 
-			'".$mime_id."'
+			'".$mimetype_id."'
 			)"
 		);
 		$link_id = q(c(), "call sqlexcdb.link_asset_to_artist(
@@ -54,7 +59,7 @@ while($i--){
 			'".rstr()."', 
 			'".rstr()."', 
 			'".rstr()."', 
-			'".$mime_id."'
+			'".$mimetype_id."'
 			)"
 		);
 		$link_id = q(c(), "call sqlexcdb.link_asset_to_release(

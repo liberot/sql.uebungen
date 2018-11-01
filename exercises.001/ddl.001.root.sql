@@ -8,7 +8,7 @@ create table if not exists sqlexcdb.timezone (
 	id int not null auto_increment primary key,
 	label varchar(128),
 	abbr varchar(255),
-	offset decimal(2,2),
+	offset decimal(4,1),
 	description varchar(255),
 	unique(label)
 );
@@ -215,7 +215,7 @@ delimiter :::
 create procedure sqlexcdb.init_timezone (
 		i_label varchar(255),
 		i_abbr varchar(255),
-		i_offset decimal(2,2),
+		i_offset decimal(4,1),
 		i_description varchar(255)
 	)
 	begin

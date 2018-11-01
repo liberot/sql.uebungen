@@ -48,4 +48,36 @@ function q($conn, $sql){
 	return $res;
 }
 
+// insert foreign key reasons
+function initTimeZones(){
+	
+	if(false == ($doc = @file_get_contents('timezones.json'))){
+		print "timezone is not a file\n";
+	}
+
+	if(false == ($coll = json_decode($doc))){
+		print "timezone is not a json\n";
+	}
+
+	foreach($coll->timezones as $zone){
+		$sql = sprintf(
+			'call sqlexcdb.init_timezone("%s", "%s", "%d", "%s")',
+			$zone->value,
+			$zone->abbr,
+			floatval($zone->offset),
+			$zone->text
+		);
+		$timezone_id = q(c(), $sql);
+	}
+}
+
+// for insert foreign key reasons
+function initMimeTypes(){
+	$mimetype_id = q(c(), "call sqlexcdb.init_mimetype('image/jpg', '')");
+	$mimetype_id = q(c(), "call sqlexcdb.init_mimetype('image/png', '')");	
+}
+
+initTimeZones();
+initMimeTypes();
+
 
