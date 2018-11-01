@@ -16,6 +16,9 @@ $mimetype_id = q(c(), "call sqlexcdb.select_mimetype_id(\"image/png\")")[0]['id'
 
 $i = 103;
 while($i--){
+	
+	print(".");
+
 	$artist_id = q(c(), "call sqlexcdb.init_artist(
 		'".rstr()."', 
 		'".rstr()."'
