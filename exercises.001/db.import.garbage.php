@@ -14,7 +14,7 @@ function proc(){
 	$timezone_id = q("call sqlexcdb.select_timezone_id(\"Pacific Standard Time\")")[0]['id'];	
 	$mimetype_id = q("call sqlexcdb.select_mimetype_id(\"image/png\")")[0]['id'];	
 
-	$i = 103;
+	$i = 903;
 	while($i--){
 		
 		print(".");
