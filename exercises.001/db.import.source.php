@@ -1,12 +1,13 @@
 <?php
 /*
-	uses ddl.001.root.sql 
+	uses ./resources/ddl.001.root.sql 
 	sqlexcdb
 
 	fills mockup db with entries from extern json data sources
+
  */
 
-require_once('conn.util.php');
+require_once('db.conn.util.php');
 
 function proc($files){
 
@@ -101,32 +102,7 @@ function proc($files){
 	}
 }
 
-proc(['artist.000.json', 'artist.001.json']);
-
-$sql = "call sqlexcdb.select_assets_by_release_id(1)";
-print_r($sql);
-print_r(q(c(), $sql));
-
-$sql = "call sqlexcdb.select_assets_by_release_id(2)";
-print_r($sql);
-print_r(q(c(), $sql));
-
-$sql = "call sqlexcdb.select_assets_by_artist_id(1)";
-print_r($sql);
-print_r(q(c(), $sql));
-
-$sql = "call sqlexcdb.select_assets_by_artist_id(2)";
-print_r($sql);
-print_r(q(c(), $sql));
-
-$sql = "call sqlexcdb.select_assets_by_artist_id_2nd(1)";
-print_r($sql);
-print_r(q(c(), $sql));
+proc(['./datasources/artist.000.json', './datasources/artist.001.json']);
 
 exit();
-
-
-
-
-
 

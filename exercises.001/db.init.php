@@ -1,10 +1,10 @@
 <?php
-require_once('conn.util.php');
+require_once('db.conn.util.php');
 
 // init of time zones : foreign key reasons
 function initTimeZones(){
 	
-	if(false == ($doc = @file_get_contents('timezones.json'))){
+	if(false == ($doc = @file_get_contents('./datasources/timezones.json'))){
 		print "timezone is not a file\n";
 	}
 
@@ -30,7 +30,7 @@ function initMimeTypes(){
 	$mimetype_id = q(c(), "call sqlexcdb.init_mimetype('image/png', '')");	
 }
 
-// move this to some setup of the db...
 initTimeZones();
 initMimeTypes();
 
+exit();

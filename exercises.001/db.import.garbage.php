@@ -1,13 +1,13 @@
 <?php
 /*
-	uses ddl.001.root.sql 
+	uses ./datasources/ddl.001.root.sql 
 	sqlexcdb
 
 	fills mockup db with random characters
 
  */
 
-require_once('conn.util.php');
+require_once('db.conn.util.php');
 
 // mockup
 $timezone_id = q(c(), "call sqlexcdb.select_timezone_id(\"Pacific Standard Time\")")[0]['id'];	
