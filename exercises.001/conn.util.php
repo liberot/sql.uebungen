@@ -22,7 +22,7 @@ function q($conn, $sql){
 	$res = null;
 	if($qres = $conn->query($sql)){
 		if(true == $qres){
-			printf("succeeded: %s\n", $sql);
+			// printf("succeeded: %s\n", $sql);
 			if($qres instanceof mysqli_result){ 
 				while($row = mysqli_fetch_assoc($qres)){
 					// ...
