@@ -6,17 +6,19 @@ create database if not exists sqlexcdb character set utf8 collate utf8_general_c
 drop table if exists sqlexcdb.timezone;
 create table if not exists sqlexcdb.timezone (
 	id int not null auto_increment primary key,
-	title varchar(128),
-	description varchar(255)
-	# unique(title)
+	label varchar(128),
+	abbr varchar(255),
+	offset decimal(2,2),
+	description varchar(255),
+	unique(label)
 );
 
 drop table if exists sqlexcdb.mimetype;
 create table if not exists sqlexcdb.mimetype (
 	id int not null auto_increment primary key,
 	title varchar(128),
-	description varchar(255)
-	# unique(title)
+	description varchar(255),
+	unique(title)
 );
 
 drop table if exists sqlexcdb.asset;
@@ -211,14 +213,38 @@ delimiter ;
 drop procedure if exists sqlexcdb.init_timezone;
 delimiter :::
 create procedure sqlexcdb.init_timezone (
-		i_title varchar(128),
+		i_label varchar(255),
+		i_abbr varchar(255),
+		i_offset decimal(2,2),
 		i_description varchar(255)
 	)
 	begin
-		insert into sqlexcdb.timezone (title, description)
-			values(i_title, i_description)
+		insert into sqlexcdb.timezone (label, abbr, offset, description)
+			values(i_label, i_abbr, i_offset, i_description)
 		;
 		select last_insert_id();		
+	end
+:::
+delimiter ;
+
+drop procedure if exists sqlexcdb.select_timezone_id;
+delimiter :::
+create procedure sqlexcdb.select_timezone_id (
+		i_label varchar(128)
+	)
+	begin
+		select id from sqlexcdb.timezone where label = i_label;
+	end
+:::
+delimiter ;
+
+drop procedure if exists sqlexcdb.select_mimetype_id;
+delimiter :::
+create procedure sqlexcdb.select_mimetype_id (
+		i_title varchar(128)
+	)
+	begin
+		select id from sqlexcdb.mimetype where title = i_title;
 	end
 :::
 delimiter ;
@@ -235,6 +261,8 @@ grant execute on procedure sqlexcdb.link_asset_to_artist to 'liberot'@'localhost
 grant execute on procedure sqlexcdb.link_asset_to_release to 'liberot'@'localhost';
 grant execute on procedure sqlexcdb.init_mimetype to 'liberot'@'localhost';
 grant execute on procedure sqlexcdb.init_timezone to 'liberot'@'localhost';
+grant execute on procedure sqlexcdb.select_timezone_id to 'liberot'@'localhost';
+grant execute on procedure sqlexcdb.select_mimetype_id to 'liberot'@'localhost';
 
 # flushi
 flush privileges;

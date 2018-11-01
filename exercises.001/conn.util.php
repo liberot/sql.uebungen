@@ -27,6 +27,8 @@ function q($conn, $sql){
 				while($row = mysqli_fetch_assoc($qres)){
 					foreach($row as $key=>$value){
 						print(sprintf("key: %s value: %s\n", $key, $value));
+						$res = $value;
+						// this is .... now this is...
 						if('last_insert_id()' == $key){
 							$res = $value;
 						}
@@ -45,4 +47,5 @@ function q($conn, $sql){
 	$conn->close();
 	return $res;
 }
+
 

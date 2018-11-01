@@ -9,12 +9,6 @@
 
 require_once('conn.util.php');
 
-$mime_id = q(c(), "call sqlexcdb.init_mimetype('image/jpg', '')");
-$mime_id = q(c(), "call sqlexcdb.init_mimetype('image/gif', '')");
-$mime_id = q(c(), "call sqlexcdb.init_mimetype('image/png', '')");
-
-$timezone_id = q(c(), "call sqlexcdb.init_timezone('America/Los Angeles', '')");
-
 $i = 103;
 while($i--){
 	$artist_id = q(c(), "call sqlexcdb.init_artist(

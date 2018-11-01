@@ -8,14 +8,43 @@
 
 require_once('conn.util.php');
 
-// mime type for mockup
-$mime_id = q(c(), "call sqlexcdb.init_mimetype('image/png', '')");
+// insert foreign key reasons
+function initTimeZones(){
+	
+	if(false == ($doc = @file_get_contents('timezones.json'))){
+		print "timezone is not a file\n";
+	}
 
-// timezone for mockup reasons 
-$timezone_id = q(c(), "call sqlexcdb.init_timezone('America/Los Angeles', '')");
+	if(false == ($coll = json_decode($doc))){
+		print "timezone is not a json\n";
+	}
+
+	foreach($coll->timezones as $zone){
+		$sql = sprintf(
+			'call sqlexcdb.init_timezone("%s", "%s", "%d", "%s")',
+			$zone->value,
+			$zone->abbr,
+			$zone->offset,
+			$zone->text
+		);
+		$timezone_id = q(c(), $sql);
+	}
+}
+
+// for insert foreign key reasons
+function initMimeTypes(){
+	$mimetype_id = q(c(), "call sqlexcdb.init_mimetype('image/jpg', '')");
+	$mimetype_id = q(c(), "call sqlexcdb.init_mimetype('image/png', '')");	
+}
 
 function proc($files){
 
+	$timezone_id = q(c(), "call sqlexcdb.select_timezone_id(\"Pacific Standard Time\")");	
+	
+	// mockup insert reasons 
+	// mimetyp_ids will probably will be typed const
+	$mimetype_id = q(c(), "call sqlexcdb.select_mimetype_id(\"image/png\")");	
+	
 	foreach ($files as $file) {
 	
 		// loads a json
@@ -39,11 +68,19 @@ function proc($files){
 
 		// adds assets of the artist into the db
 		foreach($coll->artist->assets as $asset){
+			
+			print "call sqlexcdb.init_asset(
+				'".$asset->title."', 
+				'description', 
+				'".$asset->path."', 
+				'".$mimetype_id."'
+				)";
+			
 			$asset_id = q(c(), "call sqlexcdb.init_asset(
 				'".$asset->title."', 
 				'description', 
 				'".$asset->path."', 
-				'".$mime_id."'
+				'".$mimetype_id."'
 				)"
 			);
 			// links asset to artist
@@ -83,7 +120,7 @@ function proc($files){
 					'".$asset->title."', 
 					'".$asset->description."', 
 					'".$asset->path."', 
-					'".$mime_id."'
+					'".$mimetype_id."'
 					)"
 				);
 				// links asset to release 
@@ -99,6 +136,9 @@ function proc($files){
 		}
 	}
 }
+
+$timezone_id = initTimeZones();
+$mimetype_id = initMimeTypes();
 
 proc(['artist.000.json', 'artist.001.json']);
 
