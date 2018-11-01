@@ -61,10 +61,10 @@ function initTimeZones(){
 
 	foreach($coll->timezones as $zone){
 		$sql = sprintf(
-			'call sqlexcdb.init_timezone("%s", "%s", "%d", "%s")',
+			'call sqlexcdb.init_timezone("%s", "%s", "%.01f", "%s")',
 			$zone->value,
 			$zone->abbr,
-			floatval($zone->offset),
+			$zone->offset,
 			$zone->text
 		);
 		$timezone_id = q(c(), $sql);
