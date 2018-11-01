@@ -10,8 +10,8 @@
 require_once('conn.util.php');
 
 // mockup
-$timezone_id = q(c(), "call sqlexcdb.select_timezone_id(\"Pacific Standard Time\")");	
-$mimetype_id = q(c(), "call sqlexcdb.select_mimetype_id(\"image/png\")");	
+$timezone_id = q(c(), "call sqlexcdb.select_timezone_id(\"Pacific Standard Time\")")[0]['id'];	
+$mimetype_id = q(c(), "call sqlexcdb.select_mimetype_id(\"image/png\")")[0]['id'];	
 
 
 $i = 103;

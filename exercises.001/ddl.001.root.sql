@@ -24,7 +24,7 @@ create table if not exists sqlexcdb.mimetype (
 drop table if exists sqlexcdb.asset;
 create table if not exists sqlexcdb.asset (
 	id int not null auto_increment primary key,
-	title varchar(255),
+	title varchar(128),
 	description varchar(255),
 	path varchar(255),
 	mimetype_id int,

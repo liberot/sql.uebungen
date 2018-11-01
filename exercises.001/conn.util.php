@@ -25,13 +25,17 @@ function q($conn, $sql){
 			printf("succeeded: %s\n", $sql);
 			if($qres instanceof mysqli_result){ 
 				while($row = mysqli_fetch_assoc($qres)){
+					// ...
 					foreach($row as $key=>$value){
-						print(sprintf("key: %s value: %s\n", $key, $value));
-						$res = $value;
+						// print(sprintf("key: %s value: %s\n", $key, $value));
+						// $res = $value;
 						// this is .... now this is...
 						if('last_insert_id()' == $key){
 							$res = $value;
 						}
+					}
+					if(null == $res){
+						$res[] = $row;
 					}
 				}
 				mysqli_free_result($qres);
@@ -45,6 +49,7 @@ function q($conn, $sql){
 		printf("q failed: %s\n", $conn->error);
 	}
 	$conn->close();
+	// 
 	return $res;
 }
 

@@ -10,12 +10,12 @@ require_once('conn.util.php');
 
 function proc($files){
 
-	$timezone_id = q(c(), "call sqlexcdb.select_timezone_id(\"Pacific Standard Time\")");	
+	$timezone_id = q(c(), "call sqlexcdb.select_timezone_id(\"Pacific Standard Time\")")[0]['id'];	
 	
 	// mockup insert reasons 
 	// mimetyp_ids will probably will be typed const
-	$mimetype_id = q(c(), "call sqlexcdb.select_mimetype_id(\"image/png\")");	
-	
+	$mimetype_id = q(c(), "call sqlexcdb.select_mimetype_id(\"image/png\")")[0]['id'];	
+
 	foreach ($files as $file) {
 	
 		// loads a json
@@ -110,15 +110,10 @@ function proc($files){
 
 proc(['artist.000.json', 'artist.001.json']);
 
-print("---\n");
-$res = q(c(), "call sqlexcdb.select_assets_by_release_id(1)");	
-print("---\n");
-$res = q(c(), "call sqlexcdb.select_assets_by_release_id(2)");	
-print("---\n");
-$res = q(c(), "call sqlexcdb.select_assets_by_artist_id(1)");	
-print("---\n");
-$res = q(c(), "call sqlexcdb.select_assets_by_artist_id(2)");	
-
+print_r(q(c(), "call sqlexcdb.select_assets_by_release_id(1)"));	
+print_r(q(c(), "call sqlexcdb.select_assets_by_release_id(2)"));	
+print_r(q(c(), "call sqlexcdb.select_assets_by_artist_id(1)"));	
+print_r(q(c(), "call sqlexcdb.select_assets_by_artist_id(2)"));	
 
 exit();
 
