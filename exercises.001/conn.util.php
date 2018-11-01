@@ -48,7 +48,7 @@ function q($conn, $sql){
 	return $res;
 }
 
-// insert foreign key reasons
+// init of time zones : foreign key reasons
 function initTimeZones(){
 	
 	if(false == ($doc = @file_get_contents('timezones.json'))){
@@ -71,12 +71,13 @@ function initTimeZones(){
 	}
 }
 
-// for insert foreign key reasons
+// init of mime types : foreign key reasons
 function initMimeTypes(){
 	$mimetype_id = q(c(), "call sqlexcdb.init_mimetype('image/jpg', '')");
 	$mimetype_id = q(c(), "call sqlexcdb.init_mimetype('image/png', '')");	
 }
 
+// move this to some setup of the db...
 initTimeZones();
 initMimeTypes();
 

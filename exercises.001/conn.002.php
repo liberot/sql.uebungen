@@ -110,21 +110,19 @@ function proc($files){
 
 proc(['artist.000.json', 'artist.001.json']);
 
+print("---\n");
+$res = q(c(), "call sqlexcdb.select_assets_by_release_id(1)");	
+print("---\n");
+$res = q(c(), "call sqlexcdb.select_assets_by_release_id(2)");	
+print("---\n");
+$res = q(c(), "call sqlexcdb.select_assets_by_artist_id(1)");	
+print("---\n");
+$res = q(c(), "call sqlexcdb.select_assets_by_artist_id(2)");	
+
+
 exit();
 
 /*	
-select asset.title, asset.path 
-	from asset, asset_to_release
-		where asset.id = asset_to_release.asset_id
-			and asset_to_release.release_id = 1;
-
-select asset.title, asset.path, release_to_artist.release_id
-	from artist, release_to_artist, asset_to_release, asset
-		where artist.id = release_to_artist.artist_id
-			and release_to_artist.release_id = asset_to_release.release_id
-			and asset.id = asset_to_release.asset_id
-			and artist.id = 1;
-
 select asset.title, asset.path, release_to_artist.release_id, arelease.title 
 	from artist, release_to_artist, asset_to_release, asset, arelease 
 		where artist.id = release_to_artist.artist_id 
