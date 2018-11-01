@@ -11,29 +11,29 @@ require_once('db.conn.util.php');
 
 function proc(){
 	// mockup
-	$timezone_id = q(c(), "call sqlexcdb.select_timezone_id(\"Pacific Standard Time\")")[0]['id'];	
-	$mimetype_id = q(c(), "call sqlexcdb.select_mimetype_id(\"image/png\")")[0]['id'];	
+	$timezone_id = q("call sqlexcdb.select_timezone_id(\"Pacific Standard Time\")")[0]['id'];	
+	$mimetype_id = q("call sqlexcdb.select_mimetype_id(\"image/png\")")[0]['id'];	
 
 	$i = 103;
 	while($i--){
 		
 		print(".");
 
-		$artist_id = q(c(), "call sqlexcdb.init_artist(
+		$artist_id = q("call sqlexcdb.init_artist(
 			'".rstr()."', 
 			'".rstr()."'
 			)"
 		);
 		$ii = rand(0, 25);
 		while($ii--){
-			$asset_id = q(c(), "call sqlexcdb.init_asset(
+			$asset_id = q("call sqlexcdb.init_asset(
 				'".rstr()."', 
 				'".rstr()."', 
 				'".rstr()."', 
 				'".$mimetype_id."'
 				)"
 			);
-			$link_id = q(c(), "call sqlexcdb.link_asset_to_artist(
+			$link_id = q("call sqlexcdb.link_asset_to_artist(
 				'".$asset_id."', 
 				'".$artist_id."', 
 				'".rstr()."', 
@@ -43,7 +43,7 @@ function proc(){
 			);
 		};
 		$d = date("Y-m-d H:i:s");
-		$release_id = q(c(), "call sqlexcdb.init_release(
+		$release_id = q("call sqlexcdb.init_release(
 			'".rstr()."', 
 			'".rstr()."',
 			'".$d."',
@@ -51,21 +51,21 @@ function proc(){
 			)"
 		);
 		// links release
-		$link_id = q(c(), "call sqlexcdb.link_release_to_artist(
+		$link_id = q("call sqlexcdb.link_release_to_artist(
 			'".$release_id."', 
 			'".$artist_id."'
 			)"
 		);
 		$ii = rand(0, 25);
 		while($ii--){
-			$asset_id = q(c(), "call sqlexcdb.init_asset(
+			$asset_id = q("call sqlexcdb.init_asset(
 				'".rstr()."', 
 				'".rstr()."', 
 				'".rstr()."', 
 				'".$mimetype_id."'
 				)"
 			);
-			$link_id = q(c(), "call sqlexcdb.link_asset_to_release(
+			$link_id = q("call sqlexcdb.link_asset_to_release(
 				'".$asset_id."', 
 				'".$release_id."', 
 				'".rstr()."', 

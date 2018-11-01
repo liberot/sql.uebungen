@@ -20,14 +20,14 @@ function initTimeZones(){
 			$zone->offset,
 			$zone->text
 		);
-		$timezone_id = q(c(), $sql);
+		$timezone_id = q($sql);
 	}
 }
 
 // init of mime types : foreign key reasons
 function initMimeTypes(){
-	$mimetype_id = q(c(), "call sqlexcdb.init_mimetype('image/jpg', '')");
-	$mimetype_id = q(c(), "call sqlexcdb.init_mimetype('image/png', '')");	
+	$mimetype_id = q("call sqlexcdb.init_mimetype('image/jpg', '')");
+	$mimetype_id = q("call sqlexcdb.init_mimetype('image/png', '')");	
 }
 
 initTimeZones();

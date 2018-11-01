@@ -18,7 +18,8 @@ function c(){
 	return $conn;
 };
 
-function q($conn, $sql){
+function q($sql){
+	$conn = c();
 	$res = null;
 	if($qres = $conn->query($sql)){
 		if(true == $qres){
@@ -44,6 +45,5 @@ function q($conn, $sql){
 		printf("q failed: %s\n", $conn->error);
 	}
 	$conn->close();
-	// 
 	return $res;
 }
