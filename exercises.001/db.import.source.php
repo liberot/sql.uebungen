@@ -12,9 +12,7 @@ require_once('db.conn.util.php');
 function proc($files){
 
 	$timezone_id = q(c(), "call sqlexcdb.select_timezone_id(\"Pacific Standard Time\")")[0]['id'];	
-	
-	// mockup insert reasons 
-	// mimetyp_ids will probably will be typed const
+	// mimetype_ids will probably will be typed const
 	$mimetype_id = q(c(), "call sqlexcdb.select_mimetype_id(\"image/png\")")[0]['id'];	
 
 	foreach ($files as $file) {

@@ -22,4 +22,14 @@ $sql = "call sqlexcdb.select_assets_by_artist_id_2nd(1)";
 print_r($sql);
 print_r(q(c(), $sql));
 
+$sql = "call sqlexcdb.select_artist('%Yummy Yummi Yummi i got love in my tummy and i feel like lovers do%')";
+$res = q(c(), $sql);
+print_r($sql);
+print_r($res);
+
+$sql = "call sqlexcdb.select_artist('%KB%')";
+$res = q(c(), $sql);
+print_r($sql);
+print_r($res);
+
 exit();
