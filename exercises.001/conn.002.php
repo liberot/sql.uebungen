@@ -110,10 +110,22 @@ function proc($files){
 
 proc(['artist.000.json', 'artist.001.json']);
 
-print_r(q(c(), "call sqlexcdb.select_assets_by_release_id(1)"));	
-print_r(q(c(), "call sqlexcdb.select_assets_by_release_id(2)"));	
-print_r(q(c(), "call sqlexcdb.select_assets_by_artist_id(1)"));	
-print_r(q(c(), "call sqlexcdb.select_assets_by_artist_id(2)"));	
+$sql = "call sqlexcdb.select_assets_by_release_id(1)";
+print_r($sql);
+print_r(q(c(), $sql));
+
+$sql = "call sqlexcdb.select_assets_by_release_id(2)";
+print_r($sql);
+print_r(q(c(), $sql));
+
+$sql = "call sqlexcdb.select_assets_by_artist_id(1)";
+print_r($sql);
+print_r(q(c(), $sql));
+
+$sql = "call sqlexcdb.select_assets_by_artist_id(2)";
+print_r($sql);
+print_r(q(c(), $sql));
+
 
 exit();
 

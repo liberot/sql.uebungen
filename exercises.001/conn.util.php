@@ -25,17 +25,12 @@ function q($conn, $sql){
 			// printf("succeeded: %s\n", $sql);
 			if($qres instanceof mysqli_result){ 
 				while($row = mysqli_fetch_assoc($qres)){
-					// ...
+					$res[] = $row;
+					// fixdiss this is .... now this is...
 					foreach($row as $key=>$value){
-						// print(sprintf("key: %s value: %s\n", $key, $value));
-						// $res = $value;
-						// this is .... now this is...
 						if('last_insert_id()' == $key){
 							$res = $value;
 						}
-					}
-					if(null == $res){
-						$res[] = $row;
 					}
 				}
 				mysqli_free_result($qres);
