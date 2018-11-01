@@ -255,7 +255,7 @@ create procedure sqlexcdb.select_assets_by_release_id (
 		i_release_id int
 	)
 	begin
-		select asset.title, asset.path 
+		select asset.* 
 			from asset, asset_to_release
 				where asset.id = asset_to_release.asset_id
 					and asset_to_release.release_id = i_release_id;
@@ -269,7 +269,7 @@ create procedure sqlexcdb.select_assets_by_artist_id (
 		i_artist_id int
 	)
 	begin
-		select asset.title, asset.path, release_to_artist.release_id
+		select asset.*, release_to_artist.release_id
 			from artist, release_to_artist, asset_to_release, asset
 				where artist.id = release_to_artist.artist_id
 					and release_to_artist.release_id = asset_to_release.release_id
@@ -298,5 +298,3 @@ grant execute on procedure sqlexcdb.select_assets_by_artist_id to 'liberot'@'loc
 
 # flushi
 flush privileges;
-
-

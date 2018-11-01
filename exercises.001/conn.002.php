@@ -39,14 +39,7 @@ function proc($files){
 
 		// adds assets of the artist into the db
 		foreach($coll->artist->assets as $asset){
-			
-			print "call sqlexcdb.init_asset(
-				'".$asset->title."', 
-				'description', 
-				'".$asset->path."', 
-				'".$mimetype_id."'
-				)";
-			
+			// 
 			$asset_id = q(c(), "call sqlexcdb.init_asset(
 				'".$asset->title."', 
 				'description', 
