@@ -1,5 +1,17 @@
 <?php
 
+/*
+
+	db connection utils 
+		as for to embed in the sql exercises
+
+
+ 	*/
+
+/*
+	returns some random characters
+
+	*/
 function rstr(){
 	$tt = '';
 	$ii = 27;
@@ -9,6 +21,10 @@ function rstr(){
 	return $tt;
 };
 
+/*
+	returns a db connection
+
+	*/
 function c(){
 	$conn = new mysqli('localhost', 'liberot', 'password', 'sqlexcdb');
 	if($conn->connect_errno){
@@ -18,6 +34,10 @@ function c(){
 	return $conn;
 };
 
+/*
+	returns results of a query
+
+	*/
 function q($sql){
 	$conn = c();
 	$res = null;
