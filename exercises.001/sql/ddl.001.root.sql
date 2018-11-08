@@ -2,7 +2,7 @@
 drop database if exists sqlexcdb;
 create database if not exists sqlexcdb character set utf8 collate utf8_general_ci;	
 
-# the tables
+# tables
 drop table if exists sqlexcdb.timezone;
 create table if not exists sqlexcdb.timezone (
 	id int not null auto_increment primary key,
@@ -296,7 +296,7 @@ create procedure sqlexcdb.select_assets_by_artist_id_2nd (
 :::
 delimiter ;
 
-# clients
+# grants
 drop user if exists 'liberot'@'localhost';
 create user if not exists 'liberot'@'localhost' identified by 'password';
 grant execute on procedure sqlexcdb.select_artist to 'liberot'@'localhost';
@@ -314,5 +314,4 @@ grant execute on procedure sqlexcdb.select_assets_by_release_id to 'liberot'@'lo
 grant execute on procedure sqlexcdb.select_assets_by_artist_id to 'liberot'@'localhost';
 grant execute on procedure sqlexcdb.select_assets_by_artist_id_2nd to 'liberot'@'localhost';
 
-# flushi
 flush privileges;
