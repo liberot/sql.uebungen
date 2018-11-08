@@ -48,7 +48,7 @@ create table if not exists sqlexcdb.asset_to_artist (
 	description varchar(255),
 	foreign key (asset_id) references sqlexcdb.asset(id),
 	foreign key (artist_id) references sqlexcdb.artist(id),
-	unique(asset_id, artist_id)			
+	primary key (asset_id, artist_id)
 );
 
 drop table if exists sqlexcdb.arelease;
@@ -68,7 +68,7 @@ create table if not exists sqlexcdb.release_to_artist (
 	artist_id int,
 	foreign key (release_id) references sqlexcdb.arelease(id),
 	foreign key (artist_id) references sqlexcdb.artist(id),
-	unique(release_id, artist_id)
+	primary key (release_id, artist_id)
 );
 
 drop table if exists sqlexcdb.asset_to_release;
@@ -80,7 +80,7 @@ create table if not exists sqlexcdb.asset_to_release (
 	description varchar(255),
 	foreign key (asset_id) references sqlexcdb.asset(id),
 	foreign key (release_id) references sqlexcdb.arelease(id),
-	unique(asset_id, release_id)
+	primary key (asset_id, release_id)
 );
 
 ## procedures
