@@ -1,4 +1,4 @@
-# we are all individuals at first place
+# we are all individuals as lennon said and 
 - individual - 
 id (pk)
 
