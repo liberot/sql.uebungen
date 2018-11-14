@@ -15,14 +15,16 @@ private
 individual_id (pk/fk ref individual.id)
 gender_id (pk/fk ref gender.id)
 from 
-to
+until
+
+# sure a man can chaaaange... (thompson)
 
 # but than some of you girls are boys and you boys are girls and
 - ref_individuals_softgender - 
 individual_id (pk/fk ref individual.id)
 gender_id (pk/fk ref gender.id)
 from 
-to
+until
 
 # the old model suggests a gender of a person (boolean) that is or not
 
