@@ -39,4 +39,6 @@ individual_id (pk/fk ref individual.id)
 from 
 until
 stake
+continious (boolean)
+
 
