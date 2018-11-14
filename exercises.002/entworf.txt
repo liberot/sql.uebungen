@@ -28,7 +28,7 @@ to
 - beeing - 
 id (pk) 
 
-# but elvis again was in public and than probably not   
+# but elvis again was public and than probably a different   
 - ref_beeings_individuals - 
 beeing_id (pk/fk ref beeing.id)
 individual_id (pk/fk ref individual.id)
