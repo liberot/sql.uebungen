@@ -1,33 +1,33 @@
 # we are all individuals at first place
 - individual - 
-id
+id (pk)
 
 # and than we have attributes like girl or boy or what
 - gender - 
-id 
+id (pk)
 type
 title
 description
 
 # but than attributes might change
 - ref_individuals_hardgender - 
-id (pk)
-gender_id (fk ref gender.id)
+individual_id (pk/fk ref individual.id)
+gender_id (pk/fk ref gender.id)
 from 
 to
 private
 
 # but than some of you girls are boys and you boys are girls and
 - ref_individuals_softgender - 
-id (pk)
-gender_id (fk ref gender.id)
+individual_id (pk/fk ref individual.id)
+gender_id (pk/fk ref gender.id)
 from 
 to
 private
 
 # some people 'are elvis sometimes a 
 - beeing - 
-id 
+id (pk) 
 
 # but elvis again was in public and than probably not   
 - ref_beeings_individuals - 
