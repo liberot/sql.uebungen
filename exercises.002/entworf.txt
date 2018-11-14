@@ -24,7 +24,9 @@ gender_id (pk/fk ref gender.id)
 from 
 to
 
-# some people 'are elvis sometimes but be yourself, no matter what they say..
+# the old model suggests a gender of a person (boolean) that is or not
+
+# some people 'are elvis sometimes but be yourself, no matter what they say
 - beeing - 
 id (pk) 
 
