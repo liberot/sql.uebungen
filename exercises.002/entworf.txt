@@ -2,7 +2,7 @@
 - individual - 
 id (pk)
 
-# and than we have attributes like girl or boy or what
+# and than attributes characterize an individual as we are a girl or a boy or what not
 - gender - 
 id (pk)
 type
