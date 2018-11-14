@@ -17,7 +17,7 @@ gender_id (pk/fk ref gender.id)
 from 
 until
 
-# sure a man can chaaaange... (thompson)
+# sure a man can change (thompson)
 
 # but than some of you girls are boys and you boys are girls and
 - ref_individuals_softgender - 
@@ -28,7 +28,7 @@ until
 
 # the old model suggests a gender of a person (boolean) that is or not
 
-# some people 'are elvis sometimes but be yourself, no matter what they say
+# some of them they 'are elvis sometimes but
 - beeing - 
 id (pk) 
 
@@ -36,3 +36,4 @@ id (pk)
 - ref_beeings_individuals - 
 beeing_id (pk/fk ref beeing.id)
 individual_id (pk/fk ref individual.id)
+
