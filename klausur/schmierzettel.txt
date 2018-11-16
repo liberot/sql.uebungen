@@ -86,19 +86,3 @@ Artikel
 	Bezeichnung,
 	Listenpreis
 
-select
-	k.Vorname,
-	k.Nachname,
-	(sum(art.Einzelpreis) * p.menge) as 'gesamt netto'
-from
-	Kunde k,
-	Angebot a,
-	Position p,
-	Artikel art
-where
-	a.Kundennummer = k.Kundennummer
-	and a.Erstellungsdatum >= str_to_date('2018-10-01', '%Y-%m-%d')
-	and a.Erstellungsdatum <= str_to_date('2018-10-31', '%Y-%m-%d')
-	and a.Angebotsnummer = p.Angebotsnummer
-	and p.Artikelnummer = art.Artikelnummer
-
