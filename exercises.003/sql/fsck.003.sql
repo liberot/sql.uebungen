@@ -76,11 +76,11 @@ values(
 		'Herr', 
 		'Mike', 
 		'Singapour', 
-		'Scientic Majestic', 
+		'Die blinden Aktivisten', 
 		'Kieler', 
 		'72a', 
 		'22224', 
-		'München'
+		'Fötjern'
 );
 
 insert into 
@@ -97,14 +97,14 @@ insert into
 	)
 values(
 	2, 
-		'Herr', 
+		'Frau', 
 		'Ulla', 
 		'Trulla', 
-		'Scientic Majestic', 
-		'Kieler', 
-		'72a', 
-		'22224', 
-		'München'
+		'The Continious Spirit of Ulla', 
+		'Dr Erlich Drive', 
+		'352', 
+		'91000', 
+		'Wrxium'
 );
 
 # angebot 1
@@ -190,6 +190,3 @@ insert into position
 	(pos, angebotsnummer, artikelnummer, menge)
 	value(3, 3, 3, 100000)
 ;
-
-
-
