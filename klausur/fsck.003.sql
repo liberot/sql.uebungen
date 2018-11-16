@@ -75,7 +75,7 @@ values(
 	1, 
 		'Herr', 
 		'Mike', 
-		'Singapour', 
+		'Singapur', 
 		'Die blinden Aktivisten', 
 		'Kieler', 
 		'72a', 
@@ -104,7 +104,7 @@ values(
 		'Dr Erlich Drive', 
 		'352', 
 		'91000', 
-		'Wrxium'
+		'Snofdeern'
 );
 
 # angebot 1
