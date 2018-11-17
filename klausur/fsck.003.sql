@@ -1,5 +1,8 @@
 drop database if exists `klausur`;
-create database `klausur`;
+create database `klausur` 
+	character set utf8mb4 
+	collate utf8mb4_unicode_ci
+;
 
 use 'klausur';
 
@@ -169,7 +172,7 @@ insert into angebot
 	values(
 		3,
 		2,
-		'And The Winner Is Mister Misses',
+		'Narrisch wern geht ned',
 		date(now()),
 		date(now()),
 		'Homo Homini Lupus'

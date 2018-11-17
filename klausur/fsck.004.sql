@@ -1,3 +1,5 @@
+use 'klausur';
+
 select
 	a.angebotsnummer,
 	a.erstellungsdatum,
