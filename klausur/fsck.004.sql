@@ -1,4 +1,4 @@
-use 'klausur';
+use klausur;
 
 select
 	a.angebotsnummer,
