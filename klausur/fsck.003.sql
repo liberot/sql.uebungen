@@ -117,8 +117,8 @@ insert into angebot
 		1,
 		1,
 		'Mühsam nährt sich das Eichhörnchen',
-		date(now()),
-		date(now()),
+		str_to_date('2009-10-01', '%Y-%m-%d'),
+		str_to_date('2009-10-02', '%Y-%m-%d'),
 		'Homo Homini Lupus'
 	)
 ;
@@ -138,6 +138,16 @@ insert into position
 	value(3, 1, 3, 1)
 ;
 
+insert into position
+	(pos, angebotsnummer, artikelnummer, menge)
+	value(4, 1, 3, 2)
+;
+
+insert into position
+	(pos, angebotsnummer, artikelnummer, menge)
+	value(5, 1, 3, 2)
+;
+
 # angebot 2
 insert into angebot
 	(angebotsnummer, kundennummer, kopfdaten, anfragedatum, erstellungsdatum, fussdaten)
@@ -145,8 +155,8 @@ insert into angebot
 		2,
 		2,
 		'And The Winner Is Mister Misses',
-		date(now()),
-		date(now()),
+		str_to_date('2016-01-02', '%Y-%m-%d'),
+		str_to_date('2016-01-02', '%Y-%m-%d'),
 		'Homo Homini Lupus'
 	)
 ;	
@@ -173,8 +183,8 @@ insert into angebot
 		3,
 		2,
 		'Narrisch wern geht ned',
-		date(now()),
-		date(now()),
+		str_to_date('2018-02-01', '%Y-%m-%d'),
+		str_to_date('2018-02-01', '%Y-%m-%d'),
 		'Homo Homini Lupus'
 	)
 ;	
