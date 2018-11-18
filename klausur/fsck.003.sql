@@ -1,53 +1,53 @@
-drop database if exists `klausur`;
-create database `klausur` 
+drop database if exists klausur;
+create database klausur 
 	character set utf8mb4 
 	collate utf8mb4_unicode_ci
 ;
 
-use 'klausur';
+use klausur;
 
-drop table if exists `kunde`;
-create table `kunde` (
-  `kundennummer` int,
-  `anrede` char(255),
-  `vorname` char(255),
-  `nachname` char(255),
-  `firma` char(255),
-  `strasse` char(255),
-  `hausnummer` char(255),
-  `plz` char(255),
-  `ort` char(255),
-  primary key(`kundennummer`)
+drop table if exists kunde;
+create table kunde (
+  kundennummer int,
+  anrede char(255),
+  vorname char(255),
+  nachname char(255),
+  firma char(255),
+  strasse char(255),
+  hausnummer char(255),
+  plz char(255),
+  ort char(255),
+  primary key(kundennummer)
 );
 
-drop table if exists `angebot`;
-create table `angebot` (
-  `angebotsnummer` int,
-  `kundennummer` int,
-  `kopfdaten` char(255),
-  `anfragedatum` date,
-  `erstellungsdatum` date,
-  `fussdaten` char(255),
-  foreign key(`kundennummer`) references kunde(`kundennummer`),
-  primary key(`angebotsnummer`)
+drop table if exists angebot;
+create table angebot (
+  angebotsnummer int,
+  kundennummer int,
+  kopfdaten char(255),
+  anfragedatum date,
+  erstellungsdatum date,
+  fussdaten char(255),
+  foreign key(kundennummer) references kunde(kundennummer),
+  primary key(angebotsnummer)
 );
 
-drop table if exists `artikel`;
-create table `artikel` (
-	`artikelnummer` int,
-	`bezeichnung` char(255),
-	`listenpreis` decimal(10,2),
-  	primary key(`artikelnummer`)
+drop table if exists artikel;
+create table artikel (
+	artikelnummer int,
+	bezeichnung char(255),
+	listenpreis decimal(10,2),
+  	primary key(artikelnummer)
 );
 
-drop table if exists `position`;
-create table `position` (
-  `pos` int,
-  `angebotsnummer` int,
-  `artikelnummer` int,
-  `menge` int,
-  foreign key(`artikelnummer`) references artikel(`artikelnummer`),
-  primary key(`pos`, `angebotsnummer`)
+drop table if exists position;
+create table position (
+  pos int,
+  angebotsnummer int,
+  artikelnummer int,
+  menge int,
+  foreign key(artikelnummer) references artikel(artikelnummer),
+  primary key(pos, angebotsnummer)
 );
 
 insert into artikel
