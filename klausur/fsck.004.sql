@@ -8,7 +8,7 @@ select
 	art.listenpreis,
 	p.menge,
 	art.listenpreis *p.menge as netto,
-	round((art.listenpreis *p.menge) /100 *19, 2) as ust,
+	round((art.listenpreis *p.menge) /100 *19, 2) as '19% USt.',
 	round((art.listenpreis *p.menge) +((art.listenpreis *p.menge) /100 *19), 2) as brutto
 from
 	angebot a,
