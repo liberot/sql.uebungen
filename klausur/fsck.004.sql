@@ -47,3 +47,24 @@ group by
 	a.angebotsnummer
 ;
 
+select
+	a.angebotsnummer,
+	a.erstellungsdatum,
+	k.vorname, 
+	k.nachname,
+	k.firma,
+	sum(art.listenpreis *p.menge) as gesamt
+from
+	angebot a
+inner join 
+	kunde k on a.kundennummer = k.kundennummer
+inner join
+	position p on a.angebotsnummer = p.angebotsnummer
+inner join
+	artikel art on p.artikelnummer = art.artikelnummer
+where
+	a.erstellungsdatum >= str_to_date('2000-10-01', '%Y-%m-%d')
+	and a.erstellungsdatum <= str_to_date('2022-10-31', '%Y-%m-%d')
+group by
+	a.angebotsnummer
+;
