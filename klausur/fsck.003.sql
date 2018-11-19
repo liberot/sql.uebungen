@@ -125,27 +125,27 @@ insert into angebot
 
 insert into position
 	(pos, angebotsnummer, artikelnummer, menge)
-	value(1, 1, 1, 1)
+	values(1, 1, 1, 1)
 ;
 
 insert into position
 	(pos, angebotsnummer, artikelnummer, menge)
-	value(2, 1, 2, 1)
+	values(2, 1, 2, 1)
 ;
 
 insert into position
 	(pos, angebotsnummer, artikelnummer, menge)
-	value(3, 1, 3, 1)
+	values(3, 1, 3, 1)
 ;
 
 insert into position
 	(pos, angebotsnummer, artikelnummer, menge)
-	value(4, 1, 3, 2)
+	values(4, 1, 3, 2)
 ;
 
 insert into position
 	(pos, angebotsnummer, artikelnummer, menge)
-	value(5, 1, 3, 2)
+	values(5, 1, 3, 2)
 ;
 
 # angebot 2
@@ -163,17 +163,17 @@ insert into angebot
 
 insert into position
 	(pos, angebotsnummer, artikelnummer, menge)
-	value(1, 2, 1, 100)
+	values(1, 2, 1, 100)
 ;
 
 insert into position
 	(pos, angebotsnummer, artikelnummer, menge)
-	value(2, 2, 2, 100)
+	values(2, 2, 2, 100)
 ;
 
 insert into position
 	(pos, angebotsnummer, artikelnummer, menge)
-	value(3, 2, 3, 100)
+	values(3, 2, 3, 100)
 ;
 
 # angebot 3
@@ -191,15 +191,15 @@ insert into angebot
 
 insert into position
 	(pos, angebotsnummer, artikelnummer, menge)
-	value(1, 3, 1, 25)
+	values(1, 3, 1, 25)
 ;
 
 insert into position
 	(pos, angebotsnummer, artikelnummer, menge)
-	value(2, 3, 2, 1)
+	values(2, 3, 2, 1)
 ;
 
 insert into position
 	(pos, angebotsnummer, artikelnummer, menge)
-	value(3, 3, 3, 100000)
+	values(3, 3, 3, 100000)
 ;

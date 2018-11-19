@@ -47,6 +47,8 @@ group by
 	a.angebotsnummer
 ;
 
+# set session time_zone = '+2:00';
+# select str_to_date('2109-10-01 01:00:00', '%Y-%m-%d %r');
 select
 	a.angebotsnummer,
 	a.erstellungsdatum,
@@ -63,8 +65,8 @@ inner join
 inner join
 	artikel art on p.artikelnummer = art.artikelnummer
 where
-	a.erstellungsdatum >= str_to_date('2000-10-01', '%Y-%m-%d')
-	and a.erstellungsdatum <= str_to_date('2022-10-31', '%Y-%m-%d')
+	a.erstellungsdatum >= str_to_date('2010-10-01', '%Y-%m-%d')
+	and a.erstellungsdatum <= str_to_date('2017-01-01', '%Y-%m-%d')
 group by
 	a.angebotsnummer
 ;
