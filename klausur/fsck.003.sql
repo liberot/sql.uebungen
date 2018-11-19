@@ -182,7 +182,7 @@ insert into angebot
 	values(
 		3,
 		2,
-		'Narrisch wern geht ned',
+		'Narrisch wärrn geht ned.',
 		str_to_date('2018-02-01', '%Y-%m-%d'),
 		str_to_date('2018-02-01', '%Y-%m-%d'),
 		'Homo Homini Lupus'
