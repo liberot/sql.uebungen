@@ -1,3 +1,4 @@
+
 1NF
 	Angebot_Kopfdaten
 	Angebot_Kunde_Anrede
