@@ -24,36 +24,38 @@
 	Angebot_Bruttobetrag
 	Angebot_Fussdaten
 
+
 2NF
-Angebot
-	Angebotsnummer, 
-	Kundennummer,
-	Kopfdaten, 
-	Anfragedatum, 
-	Erstellungsdatum, 
-	Nettobetrag, 
-	Umsatzsteuer, 
-	Bruttobetrag, 
-	Fussdaten
+	Angebot
+		Angebotsnummer,
+		Kundennummer,
+		Kopfdaten, 
+		Anfragedatum,
+		Erstellungsdatum,
+		Nettobetrag,
+		Umsatzsteuer,
+		Bruttobetrag,
+		Fussdaten
 
-Kunde
-	Kundennummer, 
-	Anrede, 
-	Vorname, 
-	Nachname, 
-	Firma, 
-	Strasse, 
-	Hausnummer, 
-	PLZ, 
-	Ort
+	Kunde
+		Kundennummer,
+		Anrede,
+		Vorname,
+		Nachname,
+		Firma,
+		Strasse,
+		Hausnummer,
+		PLZ,
+		Ort
 
-Position
-	Pos, 
-	Artikelnummer, 
-	Artikel
-	Menge 
-	Einzelpreis
-	Gesamt
+	Position
+		Pos,
+		Artikelnummer,
+		Artikel,
+		Menge,
+		Einzelpreis,
+		Gesamt
+
 
 3NF
 Angebot
