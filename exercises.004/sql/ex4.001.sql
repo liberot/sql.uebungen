@@ -1,205 +1,108 @@
-drop database if exists klausur;
-create database klausur 
+/*
+	Database of FIAE 2018 So GA 1 AE 
+	5.
+ */
+
+
+drop database if exists eco_pharmalog
+create database eco_pharmalog 
 	character set utf8mb4 
 	collate utf8mb4_unicode_ci
 ;
 
-use klausur;
-
-drop table if exists kunde;
-create table kunde (
-  kundennummer int,
-  anrede char(255),
-  vorname char(255),
-  nachname char(255),
-  firma char(255),
-  strasse char(255),
-  hausnummer char(255),
-  plz char(255),
-  ort char(255),
-  primary key(kundennummer)
+drop table if exists Kunde;
+create table Kunde (
+	Kunde_ID int,
+	Firma char(255),
+	Strasse char(255),
+	Plz char(255),
+	Ort char(255),
+	primary key(Kunde_ID)
 );
 
-drop table if exists angebot;
-create table angebot (
-  angebotsnummer int,
-  kundennummer int,
-  kopfdaten char(255),
-  anfragedatum date,
-  erstellungsdatum date,
-  fussdaten char(255),
-  foreign key(kundennummer) references kunde(kundennummer),
-  primary key(angebotsnummer)
+drop table if exists Artikel;
+create table Artikel (
+	Artikel_ID int,
+	Hersteller_ID int,
+	Bezeichnung char(255),
+	Listenpreis decimal(10,2),
+	primary_key(Artikel_ID),
+	foreign_key(Hersteller_ID) references Hersteller(Hersteller_ID)
 );
 
-drop table if exists artikel;
-create table artikel (
-	artikelnummer int,
-	bezeichnung char(255),
-	listenpreis decimal(10,2),
-  	primary key(artikelnummer)
+drop table if exists Hersteller;
+create table Hersteller (
+	Hersteller_ID int,
+	Firma char(255),
+	primary_key(Hersteller_ID)
 );
 
-drop table if exists position;
-create table position (
-  pos int,
-  angebotsnummer int,
-  artikelnummer int,
-  menge int,
-  foreign key(artikelnummer) references artikel(artikelnummer),
-  primary key(pos, angebotsnummer)
+drop table if exists Rechnung;
+create table Rechnung (
+	Rechnung_ID int,
+	Kunde_ID int,
+	RechnungsDatum date,
+	primary_key(Rechnung_ID, Kunde_ID),
+	foreign_key(Kunde_ID) references Kunde(Kunde_ID)
 );
 
-insert into artikel
-	(artikelnummer, bezeichnung, listenpreis)
-	values(1, 'Seife', 10.99);
-
-insert into artikel
-	(artikelnummer, bezeichnung, listenpreis)
-	values(2, 'Bier', 1.99);
-
-insert into artikel
-	(artikelnummer, bezeichnung, listenpreis)
-	values(3, 'Flugticket', 21.99);
-  
-insert into 
-	kunde(
-		kundennummer, 
-		anrede, 
-		vorname, 
-		nachname, 
-		firma, 
-		strasse, 
-		hausnummer, 
-		plz, 
-		ort
-	)
-values(
-	1, 
-		'Herr', 
-		'Mike', 
-		'Singapur', 
-		'Die blinden Aktivisten', 
-		'Kieler', 
-		'72a', 
-		'22224', 
-		'Fötjern'
+drop table if exists Position;
+create table Position (
+	Rechnung_ID int,
+	Artikel_ID int,
+	Menge int,
+	Verkaufs_Einzelpreis decimal(10,2),
+	primary_key(Rechnung_ID, Artikel_ID),
+	foreign_key(Rechnung_ID) references Rechnung(Rechnung_ID),
+	foreign_key(Artikel_ID) references Artikel(Artikel_ID)
 );
 
-insert into 
-	kunde(
-		kundennummer, 
-		anrede, 
-		vorname, 
-		nachname, 
-		firma, 
-		strasse, 
-		hausnummer, 
-		plz, 
-		ort
-	)
-values(
-	2, 
-		'Frau', 
-		'Ulla', 
-		'Trulla', 
-		'The Continious Spirit of Ulla', 
-		'Dr Erlich Drive', 
-		'352', 
-		'91000', 
-		'Snofdeern'
-);
-
-# angebot 1
-insert into angebot
-	(angebotsnummer, kundennummer, kopfdaten, anfragedatum, erstellungsdatum, fussdaten)
-	values(
-		1,
-		1,
-		'Mühsam nährt sich das Eichhörnchen',
-		str_to_date('2009-10-01', '%Y-%m-%d'),
-		str_to_date('2009-10-02', '%Y-%m-%d'),
-		'Homo Homini Lupus'
-	)
+insert into Kunde
+	(Kunde_ID, Firma, Strasse, Plz, Ort)
+	values(0, "Firma1st", "Strasse1st", "Plz1st", "Ort1st")
 ;
 
-insert into position
-	(pos, angebotsnummer, artikelnummer, menge)
-	values(1, 1, 1, 1)
+insert into Artikel
+	(Artikel_ID, Hersteller_ID, Bezeichnung, Listenpreis)
+	values(0, 0, "Bezeichnung1st", "10,00")
 ;
 
-insert into position
-	(pos, angebotsnummer, artikelnummer, menge)
-	values(2, 1, 2, 1)
+insert into Artikel
+	(Artikel_ID, Hersteller_ID, Bezeichnung, Listenpreis)
+	values(1, 0, "Bezeichnung2nd", "11,00")
 ;
 
-insert into position
-	(pos, angebotsnummer, artikelnummer, menge)
-	values(3, 1, 3, 1)
+insert into Artikel
+	(Artikel_ID, Hersteller_ID, Bezeichnung, Listenpreis)
+	values(2, 0, "Bezeichnung2nd", "12,00")
 ;
 
-insert into position
-	(pos, angebotsnummer, artikelnummer, menge)
-	values(4, 1, 3, 2)
+insert into Hersteller_ID
+	(Hersteller_ID, Firma)
+	values(0, "Firma1st")
 ;
 
-insert into position
-	(pos, angebotsnummer, artikelnummer, menge)
-	values(5, 1, 3, 2)
+insert into Hersteller_ID
+	(Hersteller_ID, Firma)
+	values(1, "Firma2nd")
 ;
 
-# angebot 2
-insert into angebot
-	(angebotsnummer, kundennummer, kopfdaten, anfragedatum, erstellungsdatum, fussdaten)
-	values(
-		2,
-		2,
-		'And The Winner Is Mister Misses',
-		str_to_date('2016-01-02', '%Y-%m-%d'),
-		str_to_date('2016-01-02', '%Y-%m-%d'),
-		'Homo Homini Lupus'
-	)
-;	
-
-insert into position
-	(pos, angebotsnummer, artikelnummer, menge)
-	values(1, 2, 1, 100)
+insert into Rechnung
+	(Rechnung_ID, Kunde_ID, RechnungsDatum)
+	values(0, 0, "2007-01-12")
 ;
 
-insert into position
-	(pos, angebotsnummer, artikelnummer, menge)
-	values(2, 2, 2, 100)
+insert into Position
+	(Rechnung_ID, Artikel_ID, Menge, Verkaufs_Einzelpreis)
+	value(0, 0, 10, "10,12")
 ;
 
-insert into position
-	(pos, angebotsnummer, artikelnummer, menge)
-	values(3, 2, 3, 100)
+insert into Position
+	(Rechnung_ID, Artikel_ID, Menge, Verkaufs_Einzelpreis)
+	value(0, 1, 10, "20,12")
 ;
 
-# angebot 3
-insert into angebot
-	(angebotsnummer, kundennummer, kopfdaten, anfragedatum, erstellungsdatum, fussdaten)
-	values(
-		3,
-		2,
-		'Narrisch wärrn geht ned.',
-		str_to_date('2018-02-01', '%Y-%m-%d'),
-		str_to_date('2018-02-01', '%Y-%m-%d'),
-		'Homo Homini Lupus'
-	)
-;	
-
-insert into position
-	(pos, angebotsnummer, artikelnummer, menge)
-	values(1, 3, 1, 25)
-;
-
-insert into position
-	(pos, angebotsnummer, artikelnummer, menge)
-	values(2, 3, 2, 1)
-;
-
-insert into position
-	(pos, angebotsnummer, artikelnummer, menge)
-	values(3, 3, 3, 100000)
+insert into Position
+	(Rechnung_ID, Artikel_ID, Menge, Verkaufs_Einzelpreis)
+	value(0, 3, 10, "30,12")
 ;
