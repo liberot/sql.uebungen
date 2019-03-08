@@ -117,6 +117,12 @@ from
 	left join Fehlzeit on Mitarbeiter.MA_ID = Fehlzeit.MA_ID
 where
 	Fehlzeit.Grund = "Urlaub"
+	and
+		Fehlzeit.Von_Datum >= 2017-01-01
+	and
+		Fehlzeit.Bis_Datum <= 2017-31-12
+group by
+	Mitarbeiter.MA_ID, Mitarbeiter.Nachname, Mitarbeiter.Vorname
 ;;;
 
 drop table Fehlzeit;
@@ -129,7 +135,6 @@ create table Fehlzeitgrund (
 );
 describe Fehlzeitgrund;
 ;;; 
-
 
 drop table if exists Fehlzeit;
 create table Fehlzeit(
