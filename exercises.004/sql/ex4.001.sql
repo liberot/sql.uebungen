@@ -5,7 +5,7 @@
 
 
 drop database if exists eco_pharmalog;
-create database eco_pharmalog
+create database eco_pharmalog 
 	character set utf8mb4 
 	collate utf8mb4_unicode_ci
 ;
@@ -109,9 +109,22 @@ insert into Position
 	value(0, 2, 10, "30,12")
 ;
 
-
-
-
-
-
+SELECT
+	Kunde.Kunde_ID,
+	Kunde.Firma,
+	COUNT(Rechnung.Rechnung_ID) AS Anzahl
+FROM
+	Kunde
+LEFT JOIN
+	Rechnung
+	ON 
+		Kunde.Kunde_ID = Rechnung.Kunde_ID
+WHERE
+	YEAR(Rechnung.RechnungsDatum) = 2007
+GROUP BY 
+	Kunde.Kunde_ID, 
+	Kunde.Firma
+ORDER BY
+	COUNT(Rechnung.Rechnung_ID) DESC,
+	Kunde.Firma
 
