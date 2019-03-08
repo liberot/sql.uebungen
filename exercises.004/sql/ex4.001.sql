@@ -65,27 +65,27 @@ insert into Kunde
 
 insert into Hersteller
 	(Hersteller_ID, Firma)
-	values(0, "Firma1st")
+	values(0, "Hersteller1st")
 ;
 
 insert into Hersteller
 	(Hersteller_ID, Firma)
-	values(1, "Firma2nd")
+	values(1, "Hersteller2nd")
 ;
 
 insert into Artikel
 	(Artikel_ID, Hersteller_ID, Bezeichnung, Listenpreis)
-	values(0, 0, "Bezeichnung1st", "10,00")
+	values(0, 0, "Bezeichnung1st", "10.00")
 ;
 
 insert into Artikel
 	(Artikel_ID, Hersteller_ID, Bezeichnung, Listenpreis)
-	values(1, 0, "Bezeichnung2nd", "11,00")
+	values(1, 0, "Bezeichnung2nd", "11.00")
 ;
 
 insert into Artikel
 	(Artikel_ID, Hersteller_ID, Bezeichnung, Listenpreis)
-	values(2, 0, "Bezeichnung2nd", "12,00")
+	values(2, 0, "Bezeichnung2nd", "12.00")
 ;
 
 insert into Rechnung
@@ -105,17 +105,17 @@ insert into Rechnung
 
 insert into Position
 	(Rechnung_ID, Artikel_ID, Menge, Verkaufs_Einzelpreis)
-	value(0, 0, 10, 10.12)
+	value(0, 0, 10, "10.12")
 ;
 
 insert into Position
 	(Rechnung_ID, Artikel_ID, Menge, Verkaufs_Einzelpreis)
-	value(0, 1, 10, 20.22)
+	value(0, 1, 10, "20.22")
 ;
 
 insert into Position
 	(Rechnung_ID, Artikel_ID, Menge, Verkaufs_Einzelpreis)
-	value(0, 2, 10, 30.12)
+	value(0, 2, 10, "30.12")
 ;
 
 SELECT
@@ -135,4 +135,63 @@ GROUP BY
 ORDER BY
 	COUNT(Rechnung.Rechnung_ID) DESC,
 	Kunde.Firma
+;;;
 
+
+
+
+
+UPDATE 
+	Artikel, Hersteller
+SET
+	Artikel.Listenpreis = Artikel.Listenpreis *1.45
+WHERE
+	Artikel.Hersteller_ID = Hersteller.Hersteller_ID
+	AND
+	Hersteller.Firma = "Hersteller1st"
+;;;
+
+SELECT
+	*
+FROM 
+	Artikel
+;;;
+
+
+
+SELECT
+	Kunde.Kunde_ID, Firma, Artikel.Bezeichnung,
+	SUM(Position.Menge * Position.Verkaufs_Einzelpreis) AS Umsatz
+FROM
+	Kunde
+	LEFT JOIN Rechnung ON Kunde.Kunde_ID = Rechnung.Kunde_ID
+	LEFT JOIN Position ON Rechnung.Rechnung_ID = Position.Rechnung_ID
+	LEFT JOIN Artikel ON Position.Artikel_ID = Artikel.Artikel_ID
+GROUP BY
+	Kunde.Kunde_ID, Firma, Artikel.Bezeichnung
+;;;
+
+
+
+
+CREATE TABLE Artikelgruppe(
+	Artikelgruppe_ID INTEGER PRIMARY KEY,
+	Artikelgruppenbezeichnung CHAR(50)
+);;;
+
+describe Artikelgruppe;
+;;;;
+
+
+
+
+
+
+ALTER TABLE Artikel
+	ADD COLUMN Artikelgruppe_ID INTEGER,
+	ADD FOREIGN KEY(Artikelgruppe_ID)
+		REFERENCES Artikelgruppe(Artikelgruppe_ID)
+;;;
+
+describe Artikel;
+;;;
