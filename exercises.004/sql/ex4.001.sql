@@ -4,11 +4,11 @@
  */
 
 
-drop database if exists eco_pharmalog
-create database eco_pharmalog 
+drop database if exists eco_pharmalog;
+create database eco_pharmalog(
 	character set utf8mb4 
 	collate utf8mb4_unicode_ci
-;
+);
 
 drop table if exists Kunde;
 create table Kunde (
@@ -106,3 +106,10 @@ insert into Position
 	(Rechnung_ID, Artikel_ID, Menge, Verkaufs_Einzelpreis)
 	value(0, 3, 10, "30,12")
 ;
+
+
+
+
+
+
+
