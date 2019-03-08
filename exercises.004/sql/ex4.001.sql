@@ -1,6 +1,5 @@
 /*
 	Database of FIAE 2018 So GA 1 AE 
-	5.
  */
 
 
@@ -94,19 +93,29 @@ insert into Rechnung
 	values(0, 0, "2007-01-12")
 ;
 
-insert into Position
-	(Rechnung_ID, Artikel_ID, Menge, Verkaufs_Einzelpreis)
-	value(0, 0, 10, "10,12")
+insert into Rechnung
+	(Rechnung_ID, Kunde_ID, RechnungsDatum)
+	values(1, 0, "2007-01-10")
+;
+
+insert into Rechnung
+	(Rechnung_ID, Kunde_ID, RechnungsDatum)
+	values(2, 0, "2007-01-7")
 ;
 
 insert into Position
 	(Rechnung_ID, Artikel_ID, Menge, Verkaufs_Einzelpreis)
-	value(0, 1, 10, "20,12")
+	value(0, 0, 10, 10.12)
 ;
 
 insert into Position
 	(Rechnung_ID, Artikel_ID, Menge, Verkaufs_Einzelpreis)
-	value(0, 2, 10, "30,12")
+	value(0, 1, 10, 20.22)
+;
+
+insert into Position
+	(Rechnung_ID, Artikel_ID, Menge, Verkaufs_Einzelpreis)
+	value(0, 2, 10, 30.12)
 ;
 
 SELECT
@@ -115,10 +124,9 @@ SELECT
 	COUNT(Rechnung.Rechnung_ID) AS Anzahl
 FROM
 	Kunde
-LEFT JOIN
-	Rechnung
-	ON 
-		Kunde.Kunde_ID = Rechnung.Kunde_ID
+	LEFT JOIN
+		Rechnung
+		ON Kunde.Kunde_ID = Rechnung.Kunde_ID
 WHERE
 	YEAR(Rechnung.RechnungsDatum) = 2007
 GROUP BY 
